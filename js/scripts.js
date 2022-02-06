@@ -4,6 +4,10 @@ class Validator {
             'data-required',
             'data-min-length',
             'data-max-length',
+            'data-email-Validate',
+            'data-only-Letters',
+            'data-equal',
+            'data-password-Validate',
         ]
     }
 
@@ -12,7 +16,7 @@ class Validator {
 
         // resgata todas as validações presentes
 
-        let currentValidations = documento.querySelector('form .erro-validation');
+        let currentValidations = document.querySelectorAll('form .error-validation');
 
         if(currentValidations.length > 0) {
             this.cleanValidations(currentValidations);
@@ -72,6 +76,72 @@ maxlength(input, maxValue) {
         this.printMessage(input, errorMessage);
     }
 }
+
+// Validar E-mail
+
+emailValidate(input) {
+    let re = /\S+@\S+\.\S+/;
+
+    let email = input.value;
+
+    let errorMessage = `Insira um E-mail no padrão alex@email.com`;
+
+    if(!re.test(email)) {
+        this.printMessage(input, errorMessage);
+    }
+}
+
+// validar se o campo tem apenas letras
+
+onlyLetters(input) {
+    let re = /^[A-Za-z]+$/;
+
+    let inputValue = input.value;
+
+    let errorMessage = `Este campos não aceita numeros nem caracteres especiais`;
+
+    if(!re.test(inputValue)) {
+        this.printMessage(input, errorMessage);
+    }
+}
+
+// verifica se os dois campos são iguais
+
+equal(input, inputName) {
+    let inputToCompare = document.getElementsByName(inputName)[0];
+
+    let errorMessage = `Este campo precisa estar igual ao ${inputName}`;
+
+    if(input.value != inputToCompare.value) {
+        this.printMessage(input, errorMessage);
+    }
+}
+
+// validar o campo de senha
+
+passwordValidate(input) {
+    // transformar string em um array
+
+    let charArr = input.value.split("");
+    let uppercases = 0;
+    let numbers = 0;
+
+    for (let i = 0; charArr.length > i; i++) {
+        if(charArr[i] === charArr[i].toUpperCase() && isNaN(parseInt(charArr[i]))) {
+            uppercases++;
+        }
+        else if (!isNaN(parseInt(charArr[i]))){
+            numbers++;
+        }
+    }
+
+    if(uppercases === 0 || numbers === 0) {
+        let errorMessage = `A senha precisa de um caractere maiúsculo e um numero`;
+        this.printMessage(input, errorMessage);
+    }
+
+}
+
 //Método para imprimir mensagens de erro
 printMessage(input, msg) {
 

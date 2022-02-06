@@ -14,27 +14,30 @@
             <div class="full-box">
                 <label for="email">E-mail</label>
                 <input type="email" name="email" id="email" placeholder="Digite o seu E-mail" 
-                data-min-length="3" data-required>
+                data-min-length="3" data-required data-email-Validate>
             </div>
         
             <div class="half-box spacing">
                 <label for="name">Nome</label>
-                <input type="text" name="name" id="name" placeholder="Digite o seu Nome" data-max-length="16">
+                <input type="text" name="name" id="name" placeholder="Digite o seu Nome" 
+                data-max-length="16" data-required data-only-Letters>
             </div>
 
             <div class="half-box">
                 <label for="lastName">Sobrenome</label>
-                <input type="text" name="lastName" id="lastName" placeholder="Digite o seu Sobrenome">
+                <input type="text" name="lastName" id="lastName" placeholder="Digite o seu Sobrenome" data-required>
             </div>
 
             <div class="half-box spacing">
                 <label for="password">Senha</label>
-                <input type="password" name="password" id="password" placeholder="Digite o sua senha">
+                <input type="password" name="password" id="password" placeholder="Digite o sua senha" data-required
+                data-password-Validate>
             </div>
 
             <div class="half-box">
                 <label for="passconfirmation">Confirmar Senha</label>
-                <input type="password" name="passconfirmation" id="passconfirmation" placeholder="Confirme a sua senha">
+                <input type="password" name="passconfirmation" id="passconfirmation" placeholder="Confirme a sua senha"
+                data-equal="password" data-required>
             </div>
             
             <div class="full-box">
