@@ -1,12 +1,25 @@
 class Validator {
     constructor() {
         this.validations = [
+            'data-required',
             'data-min-length',
+            'data-max-length',
         ]
     }
 
     // iniciar a validação de todos os campos
     validate(form) {
+
+        // resgata todas as validações presentes
+
+        let currentValidations = documento.querySelector('form .erro-validation');
+
+        if(currentValidations.length > 0) {
+            this.cleanValidations(currentValidations);
+        }
+
+
+
         // pegar todos os inputs
 
         let inputs = form.getElementsByTagName('input');
@@ -49,18 +62,51 @@ minlength(input, minValue) {
     }
 };
 
+// verifica se um input passou do limite de caracteres
+maxlength(input, maxValue) {
+    let inputLength = input.value.length;
+
+    let errorMessage = `O campo precisa ter mais que ${maxValue} caracteres`;
+
+    if(inputLength > maxValue) {
+        this.printMessage(input, errorMessage);
+    }
+}
 //Método para imprimir mensagens de erro
 printMessage(input, msg) {
 
-    let template = document.querySelector('.error-validation').cloneNode(true);
+    // Quantidades de erro
+    let errorsQty = input.parentNode.querySelector('.error-validation');
 
-    template.textContent = msg;
+    if(errorsQty === null) {
+        let template = document.querySelector('.error-validation').cloneNode(true);
 
-    let inputParent = input.parentNode;
+        template.textContent = msg;
+    
+        let inputParent = input.parentNode;
+    
+        template.classList.remove('template');
+    
+        inputParent.appendChild(template);
+    }
+}
 
-    template.classList.remove('template');
+//Verifica se o input é requerido
+required(input) {
 
-    inputParent.appendChild(template);
+    let inputValue = input.value;
+    
+    if(inputValue === '') {
+        let errorMessage = `Este campo é Obrigatório`;
+
+        this.printMessage(input, errorMessage);
+    }
+}
+
+
+//limpa as validações da tela
+cleanValidations(validations) {
+    validations.forEach(el => el.remove());
 }
 
 }
