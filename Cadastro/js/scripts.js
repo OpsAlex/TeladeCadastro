@@ -2,12 +2,14 @@ class Validator {
     constructor() {
         this.validations = [
             'data-required',
+            'data-cpf-Validate',
             'data-min-length',
             'data-max-length',
             'data-email-Validate',
             'data-only-Letters',
             'data-equal',
             'data-password-Validate',
+            'data-telefone-Validate',
         ]
     }
 
@@ -142,6 +144,34 @@ passwordValidate(input) {
 
 }
 
+// Validar o Telefone
+
+telefoneValidate(input) {
+    let re = /^[0-9]+$/;
+
+    let inputValue = input.value;
+
+    let errorMessage = `Este campo aceita apenas o padrão de telefone`;
+
+    if(!re.test(inputValue)) {
+        this.printMessage(input, errorMessage);
+    }
+}
+
+// Validar CPF
+
+cpfValidate(input) {
+    let re = /^[0-9]+$/;
+
+    let inputValue = input.value;
+
+    let errorMessage = `Este campo aceita apenas o padrão de CPF`;
+
+    if(!re.test(inputValue)) {
+        this.printMessage(input, errorMessage);
+    }
+}
+
 //Método para imprimir mensagens de erro
 printMessage(input, msg) {
 
@@ -193,3 +223,5 @@ submit.addEventListener('click', function(e){
 
     validator.validate(form);
 });
+
+

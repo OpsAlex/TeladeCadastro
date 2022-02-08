@@ -17,15 +17,22 @@
                 data-min-length="3" data-required data-email-Validate>
             </div>
         
-            <div class="half-box spacing">
+            <div class="full-box">
                 <label for="name">Nome</label>
                 <input type="text" name="name" id="name" placeholder="Digite o seu Nome" 
                 data-max-length="16" data-required data-only-Letters>
             </div>
 
+            <div class="half-box spacing">
+                <label for="telefone">Telefone</label>
+                <input type="text" name="telefone" id="telefone" placeholder="Digite o seu Telefone" data-required
+                data-telefone-Validate>
+            </div>
+
             <div class="half-box">
-                <label for="lastName">Sobrenome</label>
-                <input type="text" name="lastName" id="lastName" placeholder="Digite o seu Sobrenome" data-required>
+                <label for="docCpf">CPF</label>
+                <input type="text" name="docCpf" id="docCpf" placeholder="Digite o seu CPF" data-required
+                data-max-length="11" data-min-length="11" data-cpf-Validate>
             </div>
 
             <div class="half-box spacing">
